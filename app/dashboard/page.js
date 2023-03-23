@@ -157,7 +157,7 @@ export default function Dashboard() {
                         POST request to the API endpoint.
                       </p>
                       <Implement
-                        url={"localhost:3000"}
+                        url={"formhub-omega.vercel.app/api/form/"}
                         formid={form.id}
                       ></Implement>
                     </div>
