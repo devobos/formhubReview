@@ -22,7 +22,7 @@ const Page = () => {
             </p>
             <div className="mt-4">
               <CodeBlock
-                code={`<form action="http://localhost:3000/api/form/{yourFormHubKey}"
+                code={`<form action="https://formhub-omega.vercel.app/api/form/{yourFormHubKey}"
     <input type="text" name="input1"></input>
     <input type="text" name="input2"></input>
     <button type="submit">Button Text</button>
