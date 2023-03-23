@@ -4,6 +4,8 @@ import { authContext } from "../../auth-context";
 import Submissions from "../components/submissions";
 import Implement from "../components/implement";
 import Createmodal from "../components/createmodal";
+import UserSection from "../components/usersection";
+import Sidebar from "../components/sidebar";
 import {
   collection,
   query,
@@ -14,10 +16,6 @@ import {
   doc,
 } from "firebase/firestore";
 
-import {
-  UserIcon,
-  DocumentMagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
 import { db } from "../../firebase";
 
 export default function Dashboard() {
@@ -45,9 +43,10 @@ export default function Dashboard() {
         data: doc.data().data,
       });
     });
-    console.log(fetchedSubmissions);
+    // console.log(fetchedSubmissions);
     setSubmissions(fetchedSubmissions);
   };
+
   const handleDeleteSubmission = async (id) => {
     await deleteDoc(doc(db, "submissions", id));
     setSubmissions(submissions.filter((submission) => submission.id !== id));
@@ -113,80 +112,15 @@ export default function Dashboard() {
             setFormName={setFormName}
             handleSubmit={handleSubmit}
           ></Createmodal>
-
-          <nav
-            className={
-              sidebarOpen
-                ? "flex flex-col lg:w-64 w-[50%] bg-gray-100 border-r border-gray-200 transition-all shadow-lg shadow-slate-400"
-                : "w-0 transition-all "
-            }
-          >
-            {/* Create section */}
-            <div className={sidebarOpen ? "" : "hidden"}>
-              <div className="h-[80px] text-left font-bold text-white bg-white focus:outline-none "></div>
-              <button
-                onClick={() => {
-                  setCreateModalOpen(true);
-                }}
-                className="w-full p-4 text-left font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none "
-              >
-                + Create
-              </button>
-
-              {/* Form section */}
-              <div className="p-4 text-left font-bold text-white bg-gray-900 focus:outline-none ">
-                Forms
-              </div>
-              <div className="grow">
-                {forms?.map((form) => (
-                  <div key={form.id} className="border-b border-gray-200 ">
-                    <button
-                      onClick={() => handleFormSelect(form)}
-                      className={` p-4 w-full text-black text-left  hover:bg-neutral-200 focus:outline-none `}
-                    >
-                      {form.data.formName}
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <hr></hr>
-
-              {/* User section */}
-              <button className="min-w-full justify-start flex p-4 font-medium hover:bg-gray-200">
-                <UserIcon
-                  className="h-6 w-6 mr-2"
-                  aria-hidden="true"
-                ></UserIcon>
-                {user.displayName}
-              </button>
-              <button className="min-w-full justify-start flex p-4 font-medium hover:bg-gray-200">
-                <DocumentMagnifyingGlassIcon
-                  className="h-6 w-6 mr-2"
-                  aria-hidden="true"
-                ></DocumentMagnifyingGlassIcon>
-                Help/Docs
-              </button>
-              <button
-                className="min-w-full justify-start flex p-4 font-medium hover:bg-gray-200"
-                onClick={logout}
-              >
-                <svg
-                  className="h-6 w-6 mr-2"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                  <polyline points="16 17 21 12 16 7"></polyline>
-                  <line x1="21" y1="12" x2="9" y2="12"></line>
-                </svg>
-                Logout
-              </button>
-            </div>
-          </nav>
+          <Sidebar
+            sidebarOpen={sidebarOpen}
+            setCreateModalOpen={setCreateModalOpen}
+            setForm={setForm}
+            user={user}
+            forms={forms}
+            handleFormSelect={handleFormSelect}
+            logout={logout}
+          ></Sidebar>
 
           {/* Sidebar Toggle */}
           <div className="min-h-full items-center justify-center ">
