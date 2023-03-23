@@ -1,5 +1,3 @@
-"use client";
-
 import querystring from "querystring";
 import { collection, getDoc, addDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase";
