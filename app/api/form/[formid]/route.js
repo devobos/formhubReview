@@ -1,6 +1,6 @@
 import querystring from "querystring";
 import { collection, getDoc, addDoc, doc } from "firebase/firestore";
-import { db } from "@/firebase";
+import { db } from "../../../../firebase";
 
 export async function POST(request, { params }) {
   const formid = params.formid;

@@ -16,7 +16,7 @@ import {
   UserIcon,
   DocumentMagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { db } from "@/firebase";
+import { db } from "../../firebase";
 
 export default function Dashboard() {
   const { user, loading, logout } = useContext(authContext);

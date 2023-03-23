@@ -3,7 +3,6 @@
 import { createContext } from "react";
 import { auth, db } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
