@@ -7,13 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { authContext } from "../../auth-context";
 
-const navigation = [
-  { name: "Services", href: "services" },
-  { name: "Pricing", href: "pricing" },
-  // { name: "Projects", href: "projects" },
-  { name: "Why Us?", href: "whyus" },
-  { name: "Techstacks", href: "techstacks" },
-];
+const navigation = [];
 export default function Navbar() {
   const { user, loading, logout } = useContext(authContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
