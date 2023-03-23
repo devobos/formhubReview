@@ -180,13 +180,13 @@ export default function Dashboard() {
                 <div className="flex flex-col px-6  m-10">
                   <h2 className="text-3xl font-bold">Your Forms:</h2>
                   {forms.map((f) => (
-                    <div className="p-4 bg-gray-100 rounded-lg mt-4 ">
+                    <div
+                      className="p-4 bg-gray-100 rounded-lg mt-4 cursor-pointer"
+                      onClick={() => setForm(f)}
+                    >
                       <div className="flex flex-row justify-between">
                         <div className="flex-col">
-                          <span
-                            className="font-medium cursor-pointer"
-                            onClick={() => setForm(f)}
-                          >
+                          <span className="font-medium ">
                             {f.data.formName}
                           </span>
                           <p>{f.data.formTargetUrl}</p>
