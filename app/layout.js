@@ -10,10 +10,7 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <AuthContextProvider>
-          <div className="min-h-screen flex ">
-            <Navbar></Navbar>
-            {children}
-          </div>
+          <div className="min-h-screen flex ">{children}</div>
         </AuthContextProvider>
       </body>
     </html>

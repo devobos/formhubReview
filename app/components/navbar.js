@@ -14,12 +14,20 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="bg-white/100 z-[-1]">
+      <div className="bg-white/100 z-1">
         <nav
           className="absolute min-w-full flex items-center justify-between p-6 lg:px-8 "
           aria-label="Global"
         >
-          <div className="flex lg:flex-1"></div>
+          <div className="flex lg:flex-1">
+            {" "}
+            <Link
+              href="/"
+              className=" text-2xl z-1  text-left font-bold  bg-white focus:outline-none cursor-pointer"
+            >
+              FormHub
+            </Link>
+          </div>
           <div className="flex lg:hidden">
             <button
               type="button"
