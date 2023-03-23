@@ -14,12 +14,11 @@ const Page = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex flex-col">
-        <div className="max-w-6xl self-center mt-[10vh] font-extrabold flex py-12 px-6 justify-center lg:flex-row flex-col">
+        <div className="max-w-6xl self-center mt-[10vh] font-extrabold flex  px-6 justify-center lg:flex-row flex-col">
           <div className="lg:mr-4">
             <h2 className="text-6xl">Never write another form backend!</h2>
             <p className="text-3xl mt-4">
-              Collect, manage, forward submissions. All automated and powered by
-              AI.
+              Collect, manage, forward submissions. Without extra code.
             </p>
             <div className="mt-4">
               <CodeBlock
@@ -32,9 +31,9 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="grow sm:w-full sm:max-w-md lg:ml-6 sm:mt-6">
-            <div className="bg-white py-8 px-4 shadow-gray-400 shadow sm:rounded-lg sm:px-10">
-              <div className="">
+          <div className=" sm:w-full sm:max-w-md lg:ml-6 sm:mt-6 h-full">
+            <div className="bg-white py-8 px-4 shadow-gray-400 shadow sm:rounded-lg sm:px-10 h-full">
+              <div className="flex items-center flex-col justify-center h-full">
                 {!user ? (
                   <>
                     <h2 className="mb-4 text-2xl text-center">
