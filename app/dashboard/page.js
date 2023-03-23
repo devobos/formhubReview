@@ -174,6 +174,31 @@ export default function Dashboard() {
               </div>
             </>
           )}
+          {!form && (
+            <>
+              <div className="  justify-start w-full">
+                <div className="flex flex-col px-6  m-10">
+                  <h2 className="text-3xl font-bold">Your Forms:</h2>
+                  {forms.map((f) => (
+                    <div className="p-4 bg-gray-100 rounded-lg mt-4 ">
+                      <div className="flex flex-row justify-between">
+                        <div className="flex-col">
+                          <span
+                            className="font-medium cursor-pointer"
+                            onClick={() => setForm(f)}
+                          >
+                            {f.data.formName}
+                          </span>
+                          <p>{f.data.formTargetUrl}</p>
+                        </div>
+                        <button onClick={() => removeForm(f.id)}>delete</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </>
       )}
     </>

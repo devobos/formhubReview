@@ -23,7 +23,7 @@ const Sidebar = ({
         <div className={sidebarOpen ? "" : "hidden"}>
           <Link
             href="/"
-            className="h-[80px]  text-2xl z-1 p-4 items-center flex text-left font-bold  bg-white focus:outline-none cursor-pointer"
+            className=" text-2xl z-1 p-4 items-center flex text-left font-bold  bg-white focus:outline-none cursor-pointer"
           >
             FormHub
           </Link>

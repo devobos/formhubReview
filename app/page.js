@@ -16,7 +16,7 @@ const Page = () => {
       <div className="w-full flex flex-col">
         <div className="max-w-6xl self-center mt-[10vh] font-extrabold flex py-12 px-6 justify-center lg:flex-row flex-col">
           <div className="lg:mr-4">
-            <h2 className="text-6xl">Never write another form backend</h2>
+            <h2 className="text-6xl">Never write another form backend!</h2>
             <p className="text-3xl mt-4">
               Collect, manage, forward submissions. All automated and powered by
               AI.
@@ -85,11 +85,14 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-6xl self-center flex py-12 px-6 justify-center lg:flex-row flex-col">
+        <div className="max-w-6xl self-center flex py-12 px-6 justify-center flex-col">
           <h2 className="text-2xl">
-            Keep your form connected! <br></br>FormHub enables you to collect
-            form submissions, receive email notifications, and connect your form
-            with popular applications.
+            <span className="font-bold">Keep your form connected!</span>{" "}
+            <br></br>
+          </h2>
+          <h2 className="text-2xl mt-4">
+            FormHub enables you to collect form submissions, receive email
+            notifications, and connect your form with popular applications.
           </h2>
         </div>
       </div>

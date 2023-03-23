@@ -20,7 +20,6 @@ const UserSection = ({ user, logout }) => {
       <button className="min-w-full justify-start flex p-4 font-medium hover:bg-gray-200">
         <UserIcon className="h-6 w-6 mr-2" aria-hidden="true"></UserIcon>
         <span className="grow text-left">{user?.displayName}</span>
-        <Cog6ToothIcon className="h-6 w-6 " aria-hidden="true"></Cog6ToothIcon>
       </button>
       <button className="min-w-full justify-start flex p-4 font-medium hover:bg-gray-200">
         <DocumentMagnifyingGlassIcon
