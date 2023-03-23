@@ -1,7 +1,9 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
 import { authContext } from "../../auth-context";
-
+import Submissions from "../components/submissions";
+import Implement from "../components/implement";
+import Createmodal from "../components/createmodal";
 import {
   collection,
   query,
@@ -102,66 +104,15 @@ export default function Dashboard() {
     <>
       {user && !loading && (
         <>
-          {createModalOpen && (
-            <div className="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100 bg-opacity-70">
-              <form
-                onSubmit={handleSubmit}
-                className="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-              >
-                <div className="mb-6">
-                  <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="formname"
-                  >
-                    Formname
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    id="formname"
-                    name="formname"
-                    value={formName}
-                    onChange={(e) => setFormName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="formtargeturl"
-                  >
-                    Url of the website the form is for
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    id="formtargeturl"
-                    name="formtargeturl"
-                    value={formTargetUrl}
-                    onChange={(e) => setformTargetUrl(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="flex items-center justify-center">
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Submit
-                  </button>
-                  <div
-                    onClick={() => {
-                      setCreateModalOpen(false);
-                    }}
-                    className="bg-red-500 select-none cursor-pointer hover:bg-red-700 text-white ml-4 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Cancel
-                  </div>
-                </div>
-              </form>
-            </div>
-          )}
+          <Createmodal
+            createModalOpen={createModalOpen}
+            setCreateModalOpen={setCreateModalOpen}
+            setformTargetUrl={setformTargetUrl}
+            formName={formName}
+            formTargetUrl={formTargetUrl}
+            setFormName={setFormName}
+            handleSubmit={handleSubmit}
+          ></Createmodal>
 
           <nav
             className={
@@ -257,71 +208,33 @@ export default function Dashboard() {
                     <h2 className="text-3xl font-bold">
                       {form?.data?.formName}
                     </h2>
+                  </div>
+                  <div className="overflow-scroll">
+                    <h2 className="text-2xl ">Submissions</h2>
+                    <Submissions
+                      submissions={submissions}
+                      handleDeleteSubmission={handleDeleteSubmission}
+                    ></Submissions>
+                    {/*  */}
+                    <div className="mt-6">
+                      <h2 className="text-2xl">How to Implement</h2>
+                      <p>
+                        Use the following code to create a form that sends a
+                        POST request to the API endpoint.
+                      </p>
+                      <Implement
+                        url={"localhost:3000"}
+                        formid={form.id}
+                      ></Implement>
+                    </div>
                     <button
                       onClick={() => {
                         removeForm(form.id);
                       }}
-                      className="bg-red-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-700"
+                      className="bg-red-500 mt-4 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-700"
                     >
-                      DELETE
+                      Delete Form
                     </button>
-                  </div>
-                  <div className="overflow-scroll">
-                    <h2 className="text-2xl ">Submissions</h2>
-
-                    {submissions.length > 0 ? (
-                      submissions.map((item) => (
-                        <div key={item.id} className="">
-                          <div className="p-4 bg-gray-100 rounded-lg overflow-scroll">
-                            <span className="font-medium">Submission</span>
-                            <pre className="mt-2">
-                              {Object.keys(item.data).map((key) => (
-                                <div key={key}>
-                                  {key}: {item.data[key]}
-                                </div>
-                              ))}
-                            </pre>
-                            <button
-                              onClick={() => {
-                                handleDeleteSubmission(item.id);
-                              }}
-                              className="mt-2  bg-red-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-700"
-                            >
-                              Delete Submission
-                            </button>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <>
-                        <div className="p-4 bg-gray-100 rounded-lg overflow-scroll">
-                          <span className="font-medium">
-                            {" "}
-                            No submissions yet.
-                          </span>
-                        </div>
-
-                        <div className="mt-6">
-                          <h2 className="text-2xl">How to Implement</h2>
-                          <p>
-                            Use the following code to create a form that sends a
-                            POST request to the API endpoint. You can add as
-                            many fields or buttons as you like:
-                          </p>
-                          <pre className="bg-gray-900 text-white p-4 rounded-lg overflow-scroll">
-                            <code className="">
-                              {`<form action="http://localhost:3000/api/form/` +
-                                form.id +
-                                `">
-  <input type="text" name="input1"></input>
-  <input type="text" name="input2"></input>
-  <button type="submit">Button Text</button>
-</form>`}
-                            </code>
-                          </pre>
-                        </div>
-                      </>
-                    )}
                   </div>
                 </div>
               </div>
