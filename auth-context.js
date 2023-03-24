@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext } from "react";
 import { auth, db } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -35,13 +33,6 @@ export default function AuthContextProvider({ children }) {
       throw error;
     }
   };
-  // const gitHubLogInHandler = async () => {
-  //   try {
-  //     await signInWithPopup(auth, githubProbider);
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // };
   const logout = () => {
     signOut(auth);
     router.push("/");

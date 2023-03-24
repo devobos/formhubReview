@@ -3,12 +3,13 @@ import {
   DocumentMagnifyingGlassIcon,
   StarIcon,
   Cog6ToothIcon,
+  FolderIcon,
 } from "@heroicons/react/24/outline";
 const UserSection = ({ user, logout }) => {
   return (
     <>
       <button className="w-full justify-start flex  px-2 font-medium">
-        <div className="w-full  text-white  p-4 bg-yellow-400 rounded-md">
+        <div className="w-full  text-white  p-4 bg-yellow-400 rounded-md shadow-xl hover:scale-105 transition-all">
           <div className="flex flex-row items-center h-6 w-full drop-shadow-lg  text-white">
             <div>
               <StarIcon className="h-4 w-4 mr-2" aria-hidden="true" />

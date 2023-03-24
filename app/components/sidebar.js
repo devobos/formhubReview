@@ -1,15 +1,27 @@
 import React from "react";
-import UserSection from "../components/usersection";
+import { useState } from "react";
+import UserSection from "./usersection";
 import Link from "next/link";
+import { FolderOpenIcon } from "@heroicons/react/24/outline";
 const Sidebar = ({
   sidebarOpen,
   setCreateModalOpen,
   setForm,
   forms,
+  setForms,
   user,
   handleFormSelect,
   logout,
 }) => {
+  const [folders, setFolders] = useState(["Folder 1", "Folder 2"]);
+  const handleFormDrop = (e, folder) => {
+    e.preventDefault();
+    const formId = e.dataTransfer.getData("text/plain");
+    const updatedForms = forms.map((form) =>
+      form.id === parseInt(formId) ? { ...form, folder: folder } : form
+    );
+    setForms(updatedForms);
+  };
   return (
     <nav
       className={
@@ -46,16 +58,33 @@ const Sidebar = ({
           >
             Forms
           </div>
-
+          <div className="sidebar">
+            {folders.map((folder) => (
+              <div
+                key={folder}
+                className="p-4 border-b border-gray-200 text-left font-bold  text-white bg-gray-400 hover:bg-gray-500  focus:outline-none cursor-pointer flex flex-row"
+                onDrop={(e) => handleFormDrop(e, folder)}
+                onDragOver={(e) => e.preventDefault()}
+              >
+                <FolderOpenIcon
+                  className="h-6 w-6 mr-2"
+                  aria-hidden="true"
+                ></FolderOpenIcon>
+                {folder}
+              </div>
+            ))}
+          </div>
           <div className="flex-grow overflow-y-scroll">
             {forms?.map((form) => (
-              <div key={form.id} className="border-b border-gray-200 ">
-                <button
-                  onClick={() => handleFormSelect(form)}
-                  className={` p-4 w-full text-black text-left  hover:bg-neutral-200 focus:outline-none `}
-                >
-                  {form.data.formName}
-                </button>
+              <div
+                draggable
+                onClick={() => handleFormSelect(form)}
+                onDragStart={(e) => {
+                  e.dataTransfer.setData("text/plain", form.id);
+                }}
+                className="cursor-pointer border-b border-gray-400 p-4 w-full text-black text-left  hover:bg-neutral-200 focus:outline-none "
+              >
+                {form.data.formName}
               </div>
             ))}
           </div>

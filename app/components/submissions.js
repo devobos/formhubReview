@@ -2,20 +2,20 @@ const Submissions = ({ submissions, handleDeleteSubmission }) => {
   return (
     <>
       {submissions.length > 0 ? (
-        submissions.map((item) => (
-          <div key={item.id} className="">
+        submissions.map((submission) => (
+          <div key={submission.id} className="">
             <div className="p-4 bg-gray-100 rounded-lg overflow-scroll">
               <span className="font-medium">Submission</span>
               <pre className="mt-2">
-                {Object.keys(item.data).map((key) => (
+                {Object.keys(submission.data).map((key) => (
                   <div key={key}>
-                    {key}: {item.data[key]}
+                    {key}: {submission.data[key]}
                   </div>
                 ))}
               </pre>
               <button
                 onClick={() => {
-                  handleDeleteSubmission(item.id);
+                  handleDeleteSubmission(submission.id);
                 }}
                 className="mt-2  bg-red-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-700"
               >
